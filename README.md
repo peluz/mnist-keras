@@ -9,7 +9,7 @@ This repo holds the code for a simple handwritten digit classifier trained on MN
 
 ### Dependencies
 
-The classifier require the installation of the following dependencies:
+The classifier requires the installation of the following dependencies:
 
 1. [Tensorflow](https://www.tensorflow.org/install/)
 2. [Keras](https://keras.io/#installation)
