@@ -2,6 +2,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout, Conv2D, MaxPooling2D, Flatten, BatchNormalization
 from keras.datasets import mnist
 from keras.initializers import Orthogonal
+from keras.callbacks import ModelCheckpoint
 from keras import utils
 
 
@@ -73,11 +74,11 @@ model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
-# train the model
-model.fit(x_train, y_train, epochs=10, batch_size=32)
+# train the model and save it every epoch
+callback = ModelCheckpoint('mnistClassifier.h5')
+model.fit(x_train, y_train, epochs=10, batch_size=32, callbacks=[callback])
 score = model.evaluate(x_test, y_test)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
 
-# save the trained model architecture and weights
-model.save("mnistClassifier.h5")
+

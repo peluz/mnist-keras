@@ -30,9 +30,16 @@ columns = 5
 rows = 2
 test_size = x_test.shape[0]
 for i in range(10):
-    image = x_test[randrange(test_size)]
+    index =randrange(test_size)
+    image = np.expand_dims(x_test[index], axis=0)
     prediction = classifier.predict(image)
-    ax = plt.subplot(rows, columns, i)
-    ax.set_title(prediction)
+    ax = plt.subplot(rows, columns, i+1)
+    ax.set_title(np.argmax(prediction))
+    image = np.reshape(image, (28, 28))
     ax.imshow(image)
 plt.show()
+
+# Overall model accuracy
+score = classifier.evaluate(x_test, y_test)
+print('Test loss:', score[0])
+print('Test accuracy:', score[1])
