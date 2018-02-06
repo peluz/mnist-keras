@@ -30,7 +30,7 @@ The classifier requires the installation of the following dependencies:
 ``` 
 
 ### Results
-After training the model for 10 epochs we achieved 99.28% accuracy on the test set.
+After training the model for 36 epochs we achieved 99.25% accuracy on the test set.
 
 ### References
 1. LeCun, Yann; Corinna Cortes; Christopher J.C. Burges. ["MNIST handwritten digit database, Yann LeCun, Corinna Cortes and Chris Burges"](http://yann.lecun.com/exdb/mnist/).

@@ -48,7 +48,7 @@ while(a != 'n'):
     a = 'a'
     while(a != 'y' and a != 'n'):
         a = raw_input(
-            "Do you want to see more image samples?(y/n).")
+            "Do you want to see more image samples? (y/n)")
 
 # Overall model accuracy
 score = classifier.evaluate(x_test, y_test)

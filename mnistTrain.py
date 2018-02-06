@@ -74,14 +74,12 @@ model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
-# train the model and save it every epoch
+# train the model and save it every epoch where there is a improvement
 saver = ModelCheckpoint('mnistClassifier.h5')
 # learning rate decays if learning plateaus
-decay = ReduceLROnPlateau(factor=0.2, patience=5)
+decay = ReduceLROnPlateau(monitor='loss', factor=0.3, patience=10, verbose=1)
 # stop training if validation loss stops improving
-stop = EarlyStopping(min_delta=0.001, patience=5)
-model.fit(x_train, y_train, epochs=20, batch_size=128, validation_split=0.1,
+stop = EarlyStopping(min_delta=0.001, patience=15)
+model.fit(x_train, y_train, epochs=40, batch_size=128, validation_split=0.1,
           callbacks=[saver, decay, stop])
 score = model.evaluate(x_test, y_test)
-print('Test loss:', score[0])
-print('Test accuracy:', score[1])
