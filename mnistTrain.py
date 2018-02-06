@@ -2,7 +2,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout, Conv2D, MaxPooling2D, Flatten, BatchNormalization
 from keras.datasets import mnist
 from keras.initializers import Orthogonal
-from keras.callbacks import ModelCheckpoint
+from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau, EarlyStopping
 from keras import utils
 
 
@@ -54,7 +54,7 @@ model.add(BatchNormalization())
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
 # Droupout layer
-model.add(Dropout(0.25))
+model.add(Dropout(0.5))
 
 # First fully connected layer plus relu activation
 model.add(Flatten())
@@ -75,10 +75,13 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 # train the model and save it every epoch
-callback = ModelCheckpoint('mnistClassifier.h5')
-model.fit(x_train, y_train, epochs=10, batch_size=32, callbacks=[callback])
+saver = ModelCheckpoint('mnistClassifier.h5')
+# learning rate decays if learning plateaus
+decay = ReduceLROnPlateau(factor=0.2, patience=5)
+# stop training if validation loss stops improving
+stop = EarlyStopping(min_delta=0.001, patience=5)
+model.fit(x_train, y_train, epochs=20, batch_size=128, validation_split=0.1,
+          callbacks=[saver, decay, stop])
 score = model.evaluate(x_test, y_test)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
-
-

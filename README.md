@@ -5,7 +5,8 @@ This repo holds the code for a simple handwritten digit classifier trained on MN
 ## Contents
  1. [Dependencies](#dependencies)
  2. [Usage](#usage)
- 3. [References](#references)
+ 3. [Results](#results)
+ 4. [References](#references)
 
 ### Dependencies
 
@@ -27,6 +28,9 @@ The classifier requires the installation of the following dependencies:
 ```bash
    python mnistClassify.py
 ``` 
+
+### Results
+After training the model for 10 epochs we achieved 99.28% accuracy on the test set.
 
 ### References
 1. LeCun, Yann; Corinna Cortes; Christopher J.C. Burges. ["MNIST handwritten digit database, Yann LeCun, Corinna Cortes and Chris Burges"](http://yann.lecun.com/exdb/mnist/).
